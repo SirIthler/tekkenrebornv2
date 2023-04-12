@@ -26,10 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/design")
 public class DesignController {
 
-    /**
-     * In java you should use the interface instead of the concrete class.
-     * It helps you to switch implementations without having to change the code.
-     */
     @Autowired
     private FighterRepository fighterRepository;
 
@@ -45,16 +41,7 @@ public class DesignController {
         log.info("animes converted to string:  {}", animes);
     }
 
-    /**
-     * 1. We have created a new Fighter object here, to be populated from the form
-     * inputs
-     * 2. We have to reference the Fighter object properties in the form and bind
-     * them to the corresponding inputs
-     * 3. We have to submit Form (execute POST request) and make sure fighter
-     * details are valid
-     *
-     * @return Fighter model that we will need only for request (form) submission
-     */
+
     @ModelAttribute
     // This model attribute has a lifetime of a request
     public Fighter fighter() {

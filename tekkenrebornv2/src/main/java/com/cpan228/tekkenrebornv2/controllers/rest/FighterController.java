@@ -13,6 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/fighters", produces = "application/json")
 public class FighterController {
+
     private final FighterRepositoryPaginated fighterRepositoryPaginated;
 
     private final FighterRepository fighterRepository;
@@ -54,4 +55,5 @@ public class FighterController {
         fighterToUpdate.setResistance(fighter.getResistance());
         return fighterRepository.save(fighterToUpdate);
     }
+
 }

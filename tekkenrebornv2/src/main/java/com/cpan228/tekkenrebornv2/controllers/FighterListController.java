@@ -15,11 +15,13 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/fighterlist")
 public class FighterListController {
-    private FighterRepository fighterRepository;
     private static final int PAGE_SIZE = 5;
+    private FighterRepository fighterRepository;
+
     private FighterRepositoryPaginated fighterRepositoryPaginated;
 
-    public FighterListController(FighterRepository fighterRepository, FighterRepositoryPaginated fighterRepositoryPaginated) {
+    public FighterListController(FighterRepository fighterRepository,
+                                 FighterRepositoryPaginated fighterRepositoryPaginated) {
         this.fighterRepository = fighterRepository;
         this.fighterRepositoryPaginated = fighterRepositoryPaginated;
     }
@@ -30,12 +32,16 @@ public class FighterListController {
     }
 
     @ModelAttribute
-    public void fightersByDateDto(Model model) {
-        model.addAttribute("fightersByDateDto", new FighterSearchByDateDto());
+    public void fighters(Model model) {
         var fighterPage = fighterRepositoryPaginated.findAll(PageRequest.of(0, PAGE_SIZE));
         model.addAttribute("fighters", fighterPage);
         model.addAttribute("currentPage", fighterPage.getNumber());
         model.addAttribute("totalPages", fighterPage.getTotalPages());
+    }
+
+    @ModelAttribute
+    public void fightersByDateDto(Model model) {
+        model.addAttribute("fightersByDateDto", new FighterSearchByDateDto());
     }
 
     @PostMapping
